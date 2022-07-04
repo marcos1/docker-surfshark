@@ -1,0 +1,23 @@
+version: "3.9"
+
+services: 
+  surfshark:
+    image: ghcr.io/marcos1/docker-surfshark
+    container_name: surfshark
+    environment: 
+      - SURFSHARK_USER=YOUR_SURFSHARK_USER
+      - SURFSHARK_PASSWORD=YOUR_SURFSHARK_PASSWORD
+      - SURFSHARK_COUNTRY=
+      - SURFSHARK_CITY=
+      - CONNECTION_TYPE=udp
+      - LAN_NETWORK=0.0.0.0/0
+      - CREATE_TUN_DEVICE=false
+      - OPENVPN_OPTS=
+      - SURFSHARK_CONFIG_URL= # leave blank for default surfshark configs
+    cap_add: 
+        - NET_ADMIN
+    devices:
+        - /dev/net/tun
+    dns:
+        - 1.1.1.1
+    restart: unless-stopped
