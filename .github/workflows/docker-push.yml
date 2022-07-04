@@ -28,7 +28,7 @@ jobs:
           images: ghcr.io/marcos1/docker-surfshark
           tags: |
             type=sha
-            type=raw,value=latestenable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
