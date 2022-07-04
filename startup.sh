@@ -1,6 +1,6 @@
 #!/bin/sh
 rm -rf ovpn_configs*
-wget -O ovpn_configs.zip ${URFSHARK_CONFIG_UR}
+wget -O ovpn_configs.zip ${SURFSHARK_CONFIG_URL}
 unzip ovpn_configs.zip -d ovpn_configs
 if [ -d "ovpn_configs" ]
 then
