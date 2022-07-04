@@ -22,13 +22,17 @@ jobs:
         uses: docker/setup-buildx-action@v2
       - 
         name: Docker meta
-        id: docker_meta
-        uses: crazy-max/ghaction-docker-meta@v1
+        id: meta
+        uses: docker/metadata-action@v4
         with:
           images: ghcr.io/marcos1/docker-surfshark
-          tag-sha: true
-          tag-edge: false
-          tag-latest: true
+          tags: |
+            type=sha
+            type=raw,value=latestenable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
       -
         name: login to GHCR
         uses: docker/login-action@v2
@@ -40,7 +44,7 @@ jobs:
         name: build image
         uses: docker/build-push-action@v3
         with:
-          tags:  ${{ steps.docker_meta.outputs.tags }}, marcos1/docker-surfshark:latest
+          tags:  ${{ steps.docker_meta.outputs.tags }}
           platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
           file: ./Dockerfile
       -
@@ -48,6 +52,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ steps.docker_meta.outputs.tags }}, marcos1/docker-surfshark:latest
+          tags: ${{ steps.docker_meta.outputs.tags }}
           platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
           file: ./Dockerfile
