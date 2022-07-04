@@ -20,10 +20,10 @@ jobs:
       -
         name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
-      -
+      - 
         name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v4
+        id: docker_meta
+        uses: crazy-max/ghaction-docker-meta@v1
         with:
           images: ghcr.io/marcos1/docker-surfshark
           tag-sha: true
