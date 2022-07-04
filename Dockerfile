@@ -2,7 +2,7 @@ FROM alpine:latest
 
 # set version label
 ARG BUILD_DATE=2022/7/4
-ARG VERSION=v1
+ARG VERSION=v1.5
 LABEL build_version="  version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="marcos1"
 

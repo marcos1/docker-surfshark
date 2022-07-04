@@ -2,10 +2,10 @@
 rm -rf ovpn_configs*
 wget -O ovpn_configs.zip ${URFSHARK_CONFIG_UR}
 unzip ovpn_configs.zip -d ovpn_configs
-if [ -d "ovpn_configs"]
+if [ -d "ovpn_configs" ]
 then
     cd ovpn_configs
-elif [ -d "China_udp_*"]
+elif [ -d "China_udp_*" ]
 then
     cd China_udp_*
 fi
