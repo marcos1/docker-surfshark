@@ -5,7 +5,7 @@ unzip ovpn_configs.zip -d ovpn_configs
 if [ -d "ovpn_configs"]
 then
     cd ovpn_configs
-else if [ -d "China_udp_*"]
+elif [ -d "China_udp_*"]
 then
     cd China_udp_*
 fi
