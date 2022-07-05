@@ -1,6 +1,6 @@
 #!/bin/bash
 rm -rf ovpn_configs*
-wget ${SURFSHARK_CONFIG_URL} -O ovpn_configs.zip
+wget -4 ${SURFSHARK_CONFIG_URL} -O ovpn_configs.zip
 unzip ovpn_configs.zip -d ovpn_configs
 cd ovpn_configs
 chinadir=China_*
