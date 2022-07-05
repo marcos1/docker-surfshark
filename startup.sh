@@ -1,14 +1,18 @@
-#!/bin/sh
+#!/bin/bash
 rm -rf ovpn_configs*
-wget -O ovpn_configs.zip ${SURFSHARK_CONFIG_URL}
+wget ${SURFSHARK_CONFIG_URL} -O ovpn_configs.zip
 unzip ovpn_configs.zip -d ovpn_configs
-if [ -d "ovpn_configs" ]
-then
-    cd ovpn_configs
-elif [ -d "China_udp_*" ]
-then
-    cd China_udp_*
-fi
+cd ovpn_configs
+chinadir=China_*
+
+for f in $chinadir
+do
+    if [ -d $f ]
+    then
+        cd $f
+    fi
+done
+
 VPN_FILE=$(ls "${SURFSHARK_COUNTRY}"* | grep "${SURFSHARK_CITY}" | grep "${CONNECTION_TYPE}" | shuf | head -n 1)
 echo Chose: ${VPN_FILE}
 printf "${SURFSHARK_USER}\n${SURFSHARK_PASSWORD}" > vpn-auth.txt
