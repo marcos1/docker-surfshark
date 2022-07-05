@@ -16,7 +16,7 @@ ENV LAN_NETWORK=0.0.0.0/0
 ENV CREATE_TUN_DEVICE=false
 ENV SURFSHARK_CONFIG_URL=https://my.surfshark.com/vpn/api/v1/server/configurations
 
-HEALTHCHECK --interval=60s --timeout=10s --start-period=30s CMD curl -L 'https://ipinfo.io'
+WORKDIR /vpn
 
 COPY startup.sh .
 
@@ -35,5 +35,5 @@ RUN \
         rm -rf \
             /root/.cache \
             /tmp/*
-
+HEALTHCHECK --interval=60s --timeout=10s --start-period=30s CMD curl -L 'https://ipinfo.io'
 ENTRYPOINT [ "./startup.sh" ]
